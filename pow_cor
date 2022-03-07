@@ -1,0 +1,14 @@
+import pandas as pd 
+import itertools
+from itertools import product
+
+
+# df=pd.read_excel('/content/test1.xlsx')
+
+df = pd.read_excel("C:/Users/Erica Konadu/Desktop/test1.xlsx")
+df
+
+# # df['fat']
+# # df['colour']
+# # df['ph ']
+print (list(product(df['fat'], df['ph '])))
