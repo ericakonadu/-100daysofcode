@@ -74,3 +74,21 @@ answer= fat,ph,colour
 # answer=list(fat,ph,colour)
 print(answer)
 answer in df3
+
+
+
+
+
+
+#check whether input is in fat values
+#in df['fat'].values
+#or
+#in list(df['fat'])
+
+
+answer1 = input()
+answer = float(answer1)
+if answer in df['fat'].values :
+    print ('TRUE')
+else :
+    print('FALSE')
