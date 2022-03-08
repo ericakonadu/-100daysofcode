@@ -49,3 +49,28 @@ df1 =pd.DataFrame((list(product(df['Cake Fat'], df['Cake Colour'], df['Cake PH']
 df2 = df1.dropna()
 df2
 input()
+
+
+
+
+#this worked
+
+uniques = [df[i].unique().tolist() for i in df.columns ]
+df1=pd.DataFrame(product(*uniques), columns = df.columns)
+df1
+#all possible combinations of the dataframe
+df2=df1.dropna() #drop N/A combinations
+df2.tail(100)
+df2.to_csv('Cake_combinations.csv')
+df3=df2.to_numpy()
+df3
+##### input('fat:')
+# input('ph:')
+# input('colour:')
+
+fat,ph,colour = input('fat:'), input('ph:'), input('colour:')
+fat,ph,colour=[float(fat),float(ph),float(colour)]
+answer= fat,ph,colour
+# answer=list(fat,ph,colour)
+print(answer)
+answer in df3
