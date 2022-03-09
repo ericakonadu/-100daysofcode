@@ -34,6 +34,21 @@ fat
 colour
 
 
+# bad_spec Bs
+# total_volume Tv
+# good_spec Gs
+# volume good spec Vgs
+# volume bad spec Vbs
+#volume of corrected spec Vcs
+
+
+Bs= 13
+Vbs = 4
+Gs = 10.5
+Vgs = 1
+Tv = Vbs + Vgs
+Vcs = ((Bs*Vbs)+(Gs*Vgs))/Tv
+
 # for i in range ('Cake Fat')
 
 
