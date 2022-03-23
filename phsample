@@ -1,4 +1,4 @@
-Date	Product Type [N}	Nibs pH
+Date	Product Type [N}	Nibs pH    =INDEX(sample2!$A$2:$C$14019,MATCH(A3,$A$1:$A$1977,0),2)
 2021-05-31 06:00:00	GHN	5.42
 2021-05-31 08:00:00	GHN	5.44
 2021-05-31 10:00:00	GHN	5.43
