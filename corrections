@@ -39,7 +39,7 @@ df1
 
 
 # zipped =list(zip(x,y,d))
-zipped = list(zip(y, z))
+zipped = list(zip(y, z, d))
 
-df = pd.DataFrame(zipped, columns=['y', 'z'])
+df = pd.DataFrame(zipped, columns=['y', 'z', 'd'])
 df
