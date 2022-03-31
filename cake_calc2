@@ -1,0 +1,63 @@
+import pandas as pd 
+import numpy as np
+
+#equation for cake corrections making d(good product volume to be added ) as the subject 
+#d= ((a*b)-(f*b))/(f-c)
+#where a=bad product spec, b=bad product volume, c=good product spec, d= good product volume, f= final corrected spec
+
+a=15
+b=4
+
+
+#imported all possible combinations of the final corrected spec and good product spec 
+c1f1=pd.ExcelFile("C:\\Users\\e156310\\OneDrive - Cargill Inc\\Documents\\df2.xlsx")
+df=pd.read_excel(c1f1, 'Sheet1')
+
+f1=df['f1']
+c1=df['c1']
+
+
+#make arrays from the list
+c = np.array(c1)
+f = np.array(f1)
+
+#iterate through to get x,y,z 
+for i in c:  
+    x=(a*b)
+    y=(f*b)
+    z=(f-c)
+ 
+# print(x)
+# print(y)
+# print(z)
+
+#calculate d
+d=((x)-(y))/(z)
+# d
+
+
+#make a dataframe of y and z
+df1=pd.DataFrame(y)
+df2=pd.DataFrame(z)
+
+
+# put the f,c,d list together
+zipped = list(zip(f1,c1, d))
+
+#create a dataframe of the zipped file 
+df3 = pd.DataFrame(zipped, columns=['f1', 'c1', 'd'])
+
+#export to excel
+df3.to_excel('df2.xlsx')
+df3
+
+#filtered out where d is a negative and infinity
+df4= np.where((df3['d']>0) & ((df3['d']).astype(str).str.contains('i')==False))
+
+df5=df3.loc[df4]
+
+print(df3.loc[df4])
+
+#export to excel
+df5.to_excel('df2.xlsx')
+
