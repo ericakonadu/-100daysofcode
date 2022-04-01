@@ -1,0 +1,35 @@
+#LETS BUILD A CAKE CORRECTIONS CALCULATOR
+
+
+print ('Omo good day!, What spec do you want to check?')
+print('1.Fat')
+print('2.pH')
+print('3.Colour')
+
+operation= input()
+
+
+if operation == "1":     
+    #fat code
+    bad_fat= float(input('Enter bad cake fat:'))
+    bad_volume= float(input('Enter bad cake volume:'))
+    good_fat= float(input('Enter fat of good cake you want to add:'))
+    good_volume= float(input('Enter volume of good cake you want to add:'))
+    print ('Your final cake fat will be :' + str(float(((bad_fat*bad_volume)+(good_fat*good_volume))/(bad_volume+good_volume))));
+
+    
+if operation == "2":     
+    #ph code
+    bad_ph= float(input('Enter bad cake ph:'))
+    bad_volume= float(input('Enter bad cake volume:'))
+    good_ph= float(input('Enter ph of good cake you want to add:'))
+    good_volume= float(input('Enter volume of good cake you want to add:'))
+    print ('Your final cake ph will be :' + str(float(((bad_ph*bad_volume)+(good_ph*good_volume))/(bad_volume+good_volume))));
+    
+if operation == "3":     
+    #colour code
+    bad_colour= float(input('Enter bad cake colour:'))
+    bad_volume= float(input('Enter bad cake volume:'))
+    good_colour= float(input('Enter colour of good cake you want to add:'))
+    good_volume= float(input('Enter volume of good cake you want to add:'))
+    print ('Your final cake ph will be :' + str(float(((bad_colour*bad_volume)+(good_colour*good_volume))/(bad_volume+good_volume))));
