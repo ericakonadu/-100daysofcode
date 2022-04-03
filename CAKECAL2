@@ -33,3 +33,6 @@ if operation == "3":
     good_colour= float(input('Enter colour of good cake you want to add:'))
     good_volume= float(input('Enter volume of good cake you want to add:'))
     print ('Your final cake ph will be :' + str(float(((bad_colour*bad_volume)+(good_colour*good_volume))/(bad_volume+good_volume))));
+
+
+#def fcns 
