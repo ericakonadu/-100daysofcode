@@ -1,5 +1,4 @@
-
-# A very simple website to let powder operators run cocoa cake corrections calculator
+# A very simple website to do cocoa cake corrections.
 
 from flask import Flask, request
 
@@ -12,36 +11,75 @@ app.config["DEBUG"] = True
 def adder_page():
     errors=""
     if request.method =="POST":
-        badspec= None
+        badfat= None
         badvolume= None
-        goodspec=None
+        badcolour=None
+        badph=None
+        badmoisture=None
+        goodfat=None
         goodvolume=None
+        goodcolour=None
+        goodph=None
+        goodmoisture=None
+
         try:
-            badspec=float(request.form["badspec"])
+            badfat=float(request.form["badfat"])
         except:
-            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badspec"])
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badfat"])
         try:
             badvolume=float(request.form["badvolume"])
         except:
             errors+="<p>{!r} is not a number.</p>\n".format(request.form["badvolume"])
         try:
-            goodspec=float(request.form["goodspec"])
+            badcolour=float(request.form["badcolour"])
         except:
-            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodspec"])
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badcolour"])
+        try:
+            badph=float(request.form["badph"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badph"])
+        try:
+            badmoisture=float(request.form["badmoisture"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badmoisture"])
+        try:
+            goodfat=float(request.form["goodfat"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodfat"])
         try:
             goodvolume=float(request.form["goodvolume"])
         except:
             errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodvolume"])
-        if badspec is not None and badvolume is not None and goodspec is not None and goodvolume is not None:
-            result = do_calculation(badspec,badvolume,goodspec,goodvolume)
+        try:
+            goodcolour=float(request.form["goodcolour"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodcolour"])
+        try:
+            goodph=float(request.form["goodph"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodph"])
+        try:
+            goodmoisture=float(request.form["goodmoisture"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodmoisture"])
+
+
+        if badfat is not None and badvolume is not None and badcolour is not None and badph is not None and badmoisture is not None and goodfat is not None and goodvolume is not None and goodcolour is not None and goodph is not None and goodmoisture is not None:
+            finalfat, finalcolour,finalph,finalmoisture = do_calculation (badfat,badvolume,badcolour,badph,badmoisture,goodfat,goodvolume,goodcolour,goodph,goodmoisture)
+
             return '''
             <html>
                 <body>
-                    <p>The result is {result}</p>
+                    <p>FINAL CAKE SPECS</p>
+                    <p>Fat : {finalfat}</p>
+                    <p>Colour : {finalcolour}</p>
+                    <p>pH : {finalph}</p>
+                    <p>Moisture : {finalmoisture}</p>
+
                     <p><a href="/">Click here to calculate again</a>
                 </body>
             </html>
-        '''.format(result=result)
+        '''.format(finalfat=finalfat,finalcolour=finalcolour,finalph=finalph,finalmoisture=finalmoisture)
 
     return '''
         <html>
@@ -49,17 +87,32 @@ def adder_page():
                 {errors}
                 <p>ENTER SPECS OF BAD CAKE:</p>
                 <form method="post" action=".">
-                    <label for="badspec">Spec Value:</label>
-                    <p><input name="badspec" /></p>
+                    <label for="badfat">Fat:</label>
+                    <p><input name="badfat" /></p>
                     <label for="badvolume">Volume:</label>
                     <p><input name="badvolume" /></p>
+                    <label for="badcolour">Colour:</label>
+                    <p><input name="badcolour" /></p>
+                    <label for="badph">pH:</label>
+                    <p><input name="badph" /></p>
+                    <label for="badmoisture">Moisture:</label>
+                    <p><input name="badmoisture" /></p>
                 <p>ENTER SPECS OF GOOD CAKE YOU WANT TO ADD:</p>
-                    <label for="goodspec">Spec Value:</label>
-                    <p><input name="goodspec" /></p>
+                <label for="goodfat">Fat:</label>
+                    <p><input name="goodfat" /></p>
                     <label for="goodvolume">Volume:</label>
                     <p><input name="goodvolume" /></p>
+                    <label for="goodcolour">Colour:</label>
+                    <p><input name="goodcolour" /></p>
+                    <label for="goodph">pH:</label>
+                    <p><input name="goodph" /></p>
+                    <label for="goodmoisture">Moisture:</label>
+                    <p><input name="goodmoisture" /></p>
                     <p><input type="submit" value="CALCULATE"/></p>
+                <p>Click the "Submit" button to calculate the final specs.</p>
                 </form>
             </body>
         </html>
     '''.format(errors=errors)
+
+
