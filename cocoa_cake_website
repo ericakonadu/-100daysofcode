@@ -163,3 +163,4 @@ def adder_page():
     '''.format(errors=errors)
 
 
+# next step is to import css and make the website look nicer 
