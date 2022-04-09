@@ -164,3 +164,5 @@ def adder_page():
 
 
 # next step is to import css and make the website look nicer 
+#found a way to import css
+#next step is to put everything on one page 
