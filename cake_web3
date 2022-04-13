@@ -1,0 +1,247 @@
+
+# A very simple website to do cake corrections.
+
+from flask import Flask, request
+
+from cakecorrections import do_calculation
+app = Flask(__name__, static_url_path='/static')
+
+app.config["DEBUG"] = True
+
+@app.route("/", methods=["GET", "POST"])
+def adder_page():
+    errors=""
+    if request.method =="POST":
+        badfat= None
+        badvolume= None
+        badcolour=None
+        badph=None
+        badmoisture=None
+        goodfat=None
+        goodvolume=None
+        goodcolour=None
+        goodph=None
+        goodmoisture=None
+
+        try:
+            badfat=float(request.form["badfat"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badfat"])
+        try:
+            badvolume=float(request.form["badvolume"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badvolume"])
+        try:
+            badcolour=float(request.form["badcolour"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badcolour"])
+        try:
+            badph=float(request.form["badph"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badph"])
+        try:
+            badmoisture=float(request.form["badmoisture"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["badmoisture"])
+        try:
+            goodfat=float(request.form["goodfat"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodfat"])
+        try:
+            goodvolume=float(request.form["goodvolume"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodvolume"])
+        try:
+            goodcolour=float(request.form["goodcolour"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodcolour"])
+        try:
+            goodph=float(request.form["goodph"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodph"])
+        try:
+            goodmoisture=float(request.form["goodmoisture"])
+        except:
+            errors+="<p>{!r} is not a number.</p>\n".format(request.form["goodmoisture"])
+
+
+        if badfat is not None and badvolume is not None and badcolour is not None and badph is not None and badmoisture is not None and goodfat is not None and goodvolume is not None and goodcolour is not None and goodph is not None and goodmoisture is not None:
+            finalfat, finalcolour,finalph,finalmoisture = do_calculation (badfat,badvolume,badcolour,badph,badmoisture,goodfat,goodvolume,goodcolour,goodph,goodmoisture)
+
+            return '''
+        <html>
+            <head>
+            <title>Cake Corrections Calculator</title>
+
+            </head>
+            <body>
+                <h1>CAKE QUALITY CORRECTIONS CALCULATOR</h1>
+
+                {errors}
+
+                <form name="cake-form" method="post" action="." autocomplete="off">
+                <div class="main">
+                    <div class="badCake">
+                        <h2>ENTER SPECS OF BAD CAKE :</h2>
+                        <div>
+
+                            <label for="badfat">Fat:</label>
+                            <p><input name="badfat" /></p>
+                        </div>
+
+                        <div>
+
+                            <label for="badvolume">Volume:</label>
+                            <p><input name="badvolume" /></p>
+                        </div>
+
+
+                        <div>
+
+                            <label for="badcolour">Colour:</label>
+                            <p><input name="badcolour" /></p>
+                        </div>
+
+                        <div>
+
+                            <label for="badph">pH:</label>
+                            <p><input name="badph" /></p>
+                        </div>
+
+                        <div>
+                            <label for="badmoisture">Moisture:</label>
+                            <p><input name="badmoisture" /></p>
+                        </div>
+                    </div>
+
+                    <div class = "goodCake">
+                        <h2>ENTER SPECS OF GOOD CAKE :</h2>
+                        <div>
+                            <label for="goodfat">Fat:</label>
+                            <p><input name="goodfat" /></p>
+                        </div>
+
+                        <div>
+                            <label for="goodvolume">Volume:</label>
+                            <p><input name="goodvolume" /></p>
+                        </div>
+
+                        <div>
+                           <label for="goodcolour">Colour:</label>
+                            <p><input name="goodcolour" /></p>
+                        </div>
+
+                        <div>
+                            <label for="goodph">pH:</label>
+                            <p><input name="goodph" /></p>
+                        </div>
+
+                        <div>
+                            <label for="goodmoisture">Moisture:</label>
+                            <p><input name="goodmoisture" /></p>
+                        </div>
+                    </div>
+                    <div class = "finalCake">
+                        <h2>SPECS OF FINAL CAKE :</h2>
+                            <p>FINAL CAKE SPECS</p>
+                            <p>Fat : {finalfat}</p>
+                            <p>Colour : {finalcolour}</p>
+                            <p>pH : {finalph}</p>
+                            <p>Moisture : {finalmoisture}</p>
+
+                            <p><a href="/">Click here to calculate again</a>
+                    </div>
+                </div>
+                    <p><input type="submit" value="Submit" id="submit" onclick="submitForm()"></p>
+                    <p>Click the "Submit" button to calculate the final specs.</p>
+                </form>
+            </body>
+        </html>
+    '''.format(errors=errors,finalfat=finalfat,finalcolour=finalcolour,finalph=finalph,finalmoisture=finalmoisture)
+
+    return '''
+
+    <html>
+        <head>
+            <title>Cake Corrections Calculator</title>
+            <link rel="stylesheet" type="text/css" href="/static/style.css">
+        </head>
+        <body>
+            <h1>CAKE QUALITY CORRECTIONS CALCULATOR</h1>
+
+            {errors}
+
+            <form name="cake-form" method="post" action="." autocomplete="off">
+            <div class="main">
+                <div class="badCake">
+                    <h2>ENTER SPECS OF BAD CAKE :</h2>
+                    <div>
+
+                        <label for="badfat">Fat:</label>
+                        <p><input name="badfat" /></p>
+                    </div>
+
+                    <div>
+
+                        <label for="badvolume">Volume:</label>
+                        <p><input name="badvolume" /></p>
+                    </div>
+
+
+                    <div>
+
+                        <label for="badcolour">Colour:</label>
+                        <p><input name="badcolour" /></p>
+                    </div>
+
+                    <div>
+
+                        <label for="badph">pH:</label>
+                        <p><input name="badph" /></p>
+                    </div>
+
+                    <div>
+                        <label for="badmoisture">Moisture:</label>
+                        <p><input name="badmoisture" /></p>
+                    </div>
+                </div>
+
+                <div class = "goodCake">
+                    <h2>ENTER SPECS OF GOOD CAKE :</h2>
+                    <div>
+                        <label for="goodfat">Fat:</label>
+                        <p><input name="goodfat" /></p>
+                    </div>
+
+                    <div>
+                        <label for="goodvolume">Volume:</label>
+                        <p><input name="goodvolume" /></p>
+                    </div>
+
+                    <div>
+                       <label for="goodcolour">Colour:</label>
+                        <p><input name="goodcolour" /></p>
+                    </div>
+
+                    <div>
+                        <label for="goodph">pH:</label>
+                        <p><input name="goodph" /></p>
+                    </div>
+
+                    <div>
+                        <label for="goodmoisture">Moisture:</label>
+                        <p><input name="goodmoisture" /></p>
+                    </div>
+                </div>
+                <div class = "finalCake">
+                    <h2>SPECS OF FINAL CAKE :</h2>
+
+                </div>
+            </div>
+                <p><input type="submit" value="Submit" id="submit" onclick="submitForm()"></p>
+                <p>Click the "Submit" button to calculate the final specs.</p>
+            </form>
+        </body>
+        </html>
+    '''.format(errors=errors)
+
