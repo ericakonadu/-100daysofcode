@@ -245,3 +245,4 @@ def adder_page():
         </html>
     '''.format(errors=errors)
 
+# how to keep inputs after refreshing 
