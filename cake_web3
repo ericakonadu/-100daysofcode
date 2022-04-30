@@ -166,83 +166,81 @@ def adder_page():
             <title>Cake Corrections Calculator</title>
             <link rel="stylesheet" type="text/css" href="/static/style.css">
         </head>
-        <body>
-            <h1>CAKE QUALITY CORRECTIONS CALCULATOR</h1>
+            <body>
+                <h1>CAKE QUALITY CORRECTIONS CALCULATOR</h1>
 
-            {errors}
+                {errors}
 
-            <form name="cake-form" method="post" action="." autocomplete="off">
-            <div class="main">
-                <div class="badCake">
-                    <h2>ENTER SPECS OF BAD CAKE :</h2>
-                    <div>
+                <form name="cake-form" method="post" action="." autocomplete="off">
+                <div class="main">
+                    <div class="badCake">
+                        <h2>ENTER SPECS OF BAD CAKE :</h2>
+                        <div>
 
-                        <label for="badfat">Fat:</label>
-                        <p><input name="badfat" /></p>
+                            <label for="badfat">Fat:</label>
+                            <p><input name="badfat" /></p>
+                        </div>
+
+                        <div>
+
+                            <label for="badvolume">Volume:</label>
+                            <p><input name="badvolume" /></p>
+                        </div>
+
+
+                        <div>
+
+                            <label for="badcolour">Colour:</label>
+                            <p><input name="badcolour" /></p>
+                        </div>
+
+                        <div>
+
+                            <label for="badph">pH:</label>
+                            <p><input name="badph" /></p>
+                        </div>
+
+                        <div>
+                            <label for="badmoisture">Moisture:</label>
+                            <p><input name="badmoisture" /></p>
+                        </div>
                     </div>
+                    <div class = "goodCake">
+                        <h2>ENTER SPECS OF GOOD CAKE :</h2>
+                        <div>
+                            <label for="goodfat">Fat:</label>
+                            <p><input name="goodfat" /></p>
+                        </div>
 
-                    <div>
+                        <div>
+                            <label for="goodvolume">Volume:</label>
+                            <p><input name="goodvolume" /></p>
+                        </div>
 
-                        <label for="badvolume">Volume:</label>
-                        <p><input name="badvolume" /></p>
+                        <div>
+                           <label for="goodcolour">Colour:</label>
+                            <p><input name="goodcolour" /></p>
+                        </div>
+
+                        <div>
+                            <label for="goodph">pH:</label>
+                            <p><input name="goodph" /></p>
+                        </div>
+
+                        <div>
+                            <label for="goodmoisture">Moisture:</label>
+                            <p><input name="goodmoisture" /></p>
+                        </div>
                     </div>
+                    <div class = "finalCake">
+                        <h2>SPECS OF FINAL CAKE :</h2>
 
-
-                    <div>
-
-                        <label for="badcolour">Colour:</label>
-                        <p><input name="badcolour" /></p>
-                    </div>
-
-                    <div>
-
-                        <label for="badph">pH:</label>
-                        <p><input name="badph" /></p>
-                    </div>
-
-                    <div>
-                        <label for="badmoisture">Moisture:</label>
-                        <p><input name="badmoisture" /></p>
                     </div>
                 </div>
-
-                <div class = "goodCake">
-                    <h2>ENTER SPECS OF GOOD CAKE :</h2>
-                    <div>
-                        <label for="goodfat">Fat:</label>
-                        <p><input name="goodfat" /></p>
-                    </div>
-
-                    <div>
-                        <label for="goodvolume">Volume:</label>
-                        <p><input name="goodvolume" /></p>
-                    </div>
-
-                    <div>
-                       <label for="goodcolour">Colour:</label>
-                        <p><input name="goodcolour" /></p>
-                    </div>
-
-                    <div>
-                        <label for="goodph">pH:</label>
-                        <p><input name="goodph" /></p>
-                    </div>
-
-                    <div>
-                        <label for="goodmoisture">Moisture:</label>
-                        <p><input name="goodmoisture" /></p>
-                    </div>
-                </div>
-                <div class = "finalCake">
-                    <h2>SPECS OF FINAL CAKE :</h2>
-
-                </div>
-            </div>
-                <p><input type="submit" value="Submit" id="submit" onclick="submitForm()"></p>
-                <p>Click the "Submit" button to calculate the final specs.</p>
-            </form>
+                    <p><input type="submit" value="Submit" id="submit" onclick="submitForm()"></p>
+                    <p>Click the "Submit" button to calculate the final specs.</p>
+                </form>
         </body>
         </html>
     '''.format(errors=errors)
 
-# how to keep inputs after refreshing 
